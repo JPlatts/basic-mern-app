@@ -18,9 +18,7 @@ function hasher() {
         return {salt: salt, hash: hash};
     }
 
-    this.genResetkey = () => {
-        let size = 30;
-        //var regex = ".*[/\\x5c].*";
+    this.genResetkey = (size = 30) => {
         return crypto
             .randomBytes(size)
             .toString('base64')

@@ -8,11 +8,9 @@ class LoginButton extends React.Component {
         }
     }
     login = (e) => {
-        console.log(e);
         this.setState({isAuthenticated:true});
     }
     logout = (e) => {
-        console.log(e);
         this.setState({isAuthenticated:false});
     }
 

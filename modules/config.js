@@ -5,7 +5,7 @@ module.exports = {
     PORT: process.env.PORT || 3000,
     JWT_KEY: process.env.JWT_KEY || 'Best_Be_Overridding_THIS_for__SECURITY__',
     smtpSettings: {
-      useSendGrid: true,
+      useSendGrid: false,
       server: process.env.SMTP_SERVER || 'smtp.server.com',
       port: process.env.SMTP_PORT || 2525,
       user: process.env.SMTP_USR || '[smtp_auth_usr]',

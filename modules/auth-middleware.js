@@ -7,7 +7,7 @@ async function auth(req, res, next) {
   {
     let unpacked = jwt.verify(req.headers.authorization, JWT_KEY);
     let user = await User.findById(unpacked.user._id);
-    if (!!user) {
+    if (!!user && !!user.confirmationDate) {
       req.user = user;
       next();
     } else {

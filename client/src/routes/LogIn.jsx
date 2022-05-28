@@ -4,46 +4,60 @@ class LogIn extends React.Component {
   constructor(props) {
       super(props);
       this.state = { 
-          user: {name: 'Pete'},
-          date: new Date()
+          username: '',
+          password: ''
       }
   }
   componentDidMount() {
-    this.timer = setInterval(() => {
-        this.tock()
-    }, 1000);
+    let [a,b] = foo();
+    function foo() {
+      let x = 1;
+      let y = 2;
+      return [x,y];
+    }
+    console.log(a);
+    console.log(b);
   }
   componentWillUnmount() {
-    clearInterval(this.timer);
+
   }
 
-  tock() {
-    this.setState({
-        user: {name: this.state.user.name + ' colon'},
-        date: new Date()
-    });
+  handleSubmit = (e) => {
+    console.log('submission');
+    e.preventDefault();
   }
+
+  handleChange  = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+  }
+
 
   render() {
-    console.log(this.props);
     return (
         <div className="container">
-            <div className="row">
-                <div className="col">
-                <p>Hello, Logga!</p>
-                </div>
+          <div className="row">
+            <div className="col">
+              U: {this.state.username}
             </div>
-            <div className="row">
-                <div className="col">
-                    {this.state.user.name}
-                </div>
-                <div className="col">
-                    {this.state.date.toLocaleDateString()} {this.state.date.toLocaleTimeString()}
-                </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              P: {this.state.password}
             </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <form onSubmit={(e) => this.handleSubmit(e)}>
+                <label htmlFor="txtUsername" className="form-label">Username</label>
+                <input type="email" className="form-control" id="txtUsername" name="username" onChange={(e) => this.handleChange(e)} />
+                <label htmlFor="txtPassword" className="form-label">Password</label>
+                <input type="password" className="form-control" id="txtPassword" name="password" onChange={(e) => this.handleChange(e)} />
+                <button type="submit" className="btn btn-primary">Log In</button>
+              </form>
+            </div>
+          </div>
         </div>
-    )
-    ;
+    );
   }
 }
 

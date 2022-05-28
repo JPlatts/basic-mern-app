@@ -14,6 +14,7 @@ router.post('/register', async (req, res) => {
     } else {
       let u = await User.createAndSave(req.body);
       if(u) {
+        u.token = jwt.sign({ user: u, created: new Date()}, JWT_KEY);
         res.status(200).json({ msg:'Success', user: await User.desensitize(u) });
       } else {
         res.status(400).json({ msg: 'User registration failed' });

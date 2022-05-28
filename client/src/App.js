@@ -1,10 +1,12 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css'
 import {Routes, Route, Link} from 'react-router-dom';
 import Nav from './components/Nav';
 import LogIn from './routes/LogIn';
 import Register from './routes/Register';
+import { ToastContainer} from 'react-toastify'
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route path="/login" element={<LogIn vice="citys" />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -17,11 +17,10 @@ function mailer() {
     return transport;
   }
 
-  this.registrationMail = async (user, link) => {
+  this.registrationMail = async (user, code) => {
     let subject = `${smtpSettings.domain} Registration`;
     let html = `<p>Thank you for registering with ${smtpSettings.domain}</p>
-                <p>Please follow this link to confirm your account registration:</p><p>
-                <a href="${link}">Confirm Account</a></p>`;
+                <p>Please use this code to confirm your account: ${code}</p>`;
     return await this.sendMail(user, subject, html);
   }
 

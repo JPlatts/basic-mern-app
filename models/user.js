@@ -100,8 +100,7 @@ userSchema.statics.sanitizeNewUser = (user) => {
   user.firstName = user.firstName ? user.firstName.trim() : '';
   user.lastName = user.lastName ? user.lastName.trim() : '';
   user.password = user.password ? user.password.trim() : '';
-  user.confirmationRoute = user.confirmationRoute ? user.confirmationRoute.trim() : '';
-
+  
   return user;
 }
 
@@ -123,14 +122,13 @@ userSchema.statics.createAndSave = async (inputUser) => {
   newUser.passwordSetDate = new Date();
   newUser.creationDate = new Date();
   
-  let confKey = hasher.genResetkey();
+  let confKey = hasher.genResetkey(10);
   let confHash = hasher.hashPwd(confKey);
   newUser.confirmationSalt = confHash.salt;
   newUser.confirmationHash = confHash.hash;
   newUser = await newUser.save();
   try {
-    let confirmationLink = `${inputUser.confirmationRoute}/${newUser.id}/key/${confKey}`;
-    let mailSuccess = await mailer.registrationMail(newUser,confirmationLink);
+    let mailSuccess = await mailer.registrationMail(newUser, confKey);
     if(!mailSuccess) {
       let del = await User.deleteOne(newUser);
       throw new Error('Failed to send registration email.')  
@@ -206,11 +204,7 @@ userSchema.statics.validateNewUser = (user) => {
   if (!saniUser.password || !User.isMedStrongPassword(saniUser.password)) {
     valid = false;
   }
-
-  if (!saniUser.confirmationRoute || saniUser.confirmationRoute == '') {
-    valid = false;
-  }
-
+  
   return valid;
 
 }
