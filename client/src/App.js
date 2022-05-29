@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import LogIn from './routes/LogIn';
 import Register from './routes/Register';
 import { ToastContainer} from 'react-toastify'
+import AccountConfirmation from './components/AccountConfirmation';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
       </Routes>
       <ToastContainer />
+      <AccountConfirmation />
     </div>
   );
 }
