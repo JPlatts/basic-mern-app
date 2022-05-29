@@ -37,9 +37,9 @@ function Register() {
   //react hook for watching changes
   useEffect(() => {
     
-    if(isError) {
-      toast.error(message);
-    }
+    // if(isError) {
+    //   toast.error(message);
+    // }
 
     if(isSuccess || user) {
       navigate('/');
@@ -66,57 +66,61 @@ function Register() {
   }
   
 
-  return ( 
-    <div className="container">
-      <h2><FaUserPlus /></h2>
-      <p>Please sign up!</p>
+  return (<>
+    <div className="section">
       <form onSubmit={onSubmit}>
-        <div className="row justify-content-md-center">
-          <div className="col-md-3 mb-2">
-            <input className={`form-control ${firstName.trim().length === 0  ? 'is-invalid' : 'is-valid'}`}
-              type="text" name="firstName" id="firstName" 
+        <div className="columns is-mobile is-centered">
+          <div className="column is-half">
+            <h1 className='title'>Please sign up!</h1>
+            <div className="field">
+              <input type="text" className={`input ${firstName.trim().length === 0  ? 'is-danger' : 'is-success'}`}
+              name="firstName" id="firstName" 
               value={firstName} onChange={onChange} placeholder="First name" autoComplete="off" />
-              <div className="invalid-feedback">First name is required.</div>
-          </div>
-        </div>
-        <div className="row justify-content-md-center">
-          <div className="col-md-3 mb-2">
-            <input className={`form-control ${lastName.trim().length === 0  ? 'is-invalid' : 'is-valid'}`} type="text" name="lastName" id="lastName" 
+              <p className={`help is-danger ${firstName.trim().length !== 0  ? 'is-hidden' : ''}`} >First name is required.</p>
+            </div>
+            <div className="field">
+              <input type="text" className={`input ${lastName.trim().length === 0  ? 'is-danger' : 'is-success'}`}
+              name="lastName" id="lastName" 
               value={lastName} onChange={onChange} placeholder="Last name" autoComplete="off" />
-            <div className="invalid-feedback">Last name is required.</div>
-          </div>
-        </div>  
-        <div className="row justify-content-md-center">
-          <div className="col-md-3 mb-2">
-            <input className={`form-control ${validateEmail(email) ? 'is-valid' : 'is-invalid'}`} 
-              type="text" name="email" id="email" value={email} 
-              onChange={onChange} placeholder="Email" autoComplete="off"/>
-            <div className="invalid-feedback">{email.trim().length === 0 ? 'Email is required.' : 'Email is invalid.'}</div>
-          </div>
-        </div>
-        <div className="row justify-content-md-center">
-          <div className="col-md-3 mb-2">
-            <input className={`form-control ${validatePassword(password) ? 'is-valid' : 'is-invalid'}`} 
-                type="password" name="password" id="password" value={password} 
-                onChange={onChange} placeholder="Password" autoComplete="off" />
-                <div className="invalid-feedback">{password.trim().length === 0 ? 'Password is required.' : 'Password is too week.'}</div>
-          </div>
-        </div>
-        <div className="row justify-content-md-center">
-          <div className="col-md-3 mb-2">
-            <input className={`form-control ${(confirmPassword.trim().length === 0 || confirmPassword !== password) ? 'is-invalid' : 'is-valid'}`} 
-              type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onChange} placeholder="Confirm Password" autoComplete="off" />
-              <div className="invalid-feedback">{confirmPassword.trim().length === 0 ? 'Password confirmation is required.' : 'Passwords do not match.'}</div>
-          </div>
-        </div>
-        <div className="row justify-content-md-center">
-          <div className="col-md-3 mb-2">
-            <button className="btn btn-primary w-100"><FaUserPlus /> Sign up.</button>
+              <p className={`help is-danger ${lastName.trim().length !== 0  ? 'is-hidden' : ''}`} >Last name is required.</p>
+            </div>
+
+            <div className="field">
+              <input type="text" className={`input ${!validateEmail(email)  ? 'is-danger' : 'is-success'}`}
+              name="email" id="email" 
+              value={email} onChange={onChange} placeholder="Email" autoComplete="off" />
+              <p className={`help is-danger ${email.trim().length !== 0  ? 'is-hidden' : ''}`} >Email is required.</p>
+              <p className={`help is-danger ${email.trim().length > 0 && !validateEmail(email) ? '' : 'is-hidden'}`} >Email is invalid.</p>
+            </div>
+
+            <div className="field">
+              <input type="password" className={`input ${!validatePassword(password)  ? 'is-danger' : 'is-success'}`}
+              name="password" id="password" 
+              value={password} onChange={onChange} placeholder="Password" autoComplete="off" />
+              <p className={`help is-danger ${password.trim().length !== 0  ? 'is-hidden' : ''}`} >Password is required.</p>
+              <p className={`help is-danger ${password.trim().length > 0 && !validatePassword(password) ? '' : 'is-hidden'}`} >Password is invalid.</p>
+            </div>
+
+            <div className="field">
+              <input type="password" className={`input ${!validatePassword(confirmPassword)  ? 'is-danger' : 'is-success'}`}
+              name="confirmPassword" id="confirmPassword" 
+              value={confirmPassword} onChange={onChange} placeholder="Confirm Password" autoComplete="off" />
+              <p className={`help is-danger ${confirmPassword.trim().length !== 0  ? 'is-hidden' : ''}`} >Password confirmation is required.</p>
+              <p className={`help is-danger ${confirmPassword.trim().length > 0 && password !== confirmPassword ? '' : 'is-hidden'}`} >Passwords do not match.</p>
+            </div>
+
+            
+            <div className="field is-grouped">
+              <div className="control">
+                <button className="button is-link"><FaUserPlus />&nbsp;Sign up.</button>&nbsp;&nbsp;
+              </div>
+              
+            </div>
           </div>
         </div>
       </form>
-    </div>
-            
+    </div>  
+  </>          
               
             
             

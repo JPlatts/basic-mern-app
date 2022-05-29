@@ -1,24 +1,29 @@
-import React from 'react'; // get the React object from the react module
 
-class LoginButton extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isAuthenticated: false
-        }
-    }
-    login = (e) => {
-        this.setState({isAuthenticated:true});
-    }
-    logout = (e) => {
-        this.setState({isAuthenticated:false});
-    }
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../features/auth/authSlice'
+const { FaUserMinus, FaUserCheck } = require('react-icons/fa');
+const { Link, useNavigate } = require('react-router-dom');
 
-    render() {
-        let loginButton =  <button className='btn btn-primary' onClick={(e) => this.login(e)}> Log In</button>;
-        let logoutButton =  <button className='btn btn-primary' onClick={(e) => this.logout(e)} > Log Out</button>;
-        return this.state.isAuthenticated ? logoutButton : loginButton;
-    }
+
+function LoginButton() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((s) => s.auth);
+  
+  const logoutClicked = (e) => {
+      dispatch(logout());
+      navigate('/');
+  }
+
+  if (user) {
+    return (
+      <>
+        <button className="button is-link" onClick={(e) => logoutClicked(e)} ><FaUserMinus/>&nbsp;Sign out</button>&nbsp;
+      </>
+    );
+  } else {
+    return (<><Link className="button is-link is-primary" to="login"><FaUserCheck/>&nbsp;Sign in</Link>&nbsp;</>);
+  }
+
 }
-
 export default LoginButton;

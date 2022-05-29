@@ -2,10 +2,10 @@ import { FaCog } from 'react-icons/fa'
 
 function Spinner (props) {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <h1>
+    <div className="section">
+      <div className="columns is-mobile is-centered">
+        <div className="column is-half has-text-centered">
+          <h1 className='title'>
             <FaCog className='Spinner-spin' />
           </h1>
           {props.children}

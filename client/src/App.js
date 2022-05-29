@@ -1,6 +1,6 @@
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bulma/css/bulma-rtl.min.css'
 import 'react-toastify/dist/ReactToastify.css'
 import {Routes, Route, Link} from 'react-router-dom';
 import Nav from './components/Nav';
