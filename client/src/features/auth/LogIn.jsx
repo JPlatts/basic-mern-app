@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
-import { validateEmail, validatePassword } from '../modules/common'
-import Spinner from '../components/Spinner'
+import { validateEmail, validatePassword } from '../../modules/common'
+import Spinner from '../../app/Spinner';
 import { useNavigate } from 'react-router-dom'
 import { FaUserCheck, FaUserPlus } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { login, reset } from '../features/auth/authSlice'
+import { login, reset } from './authSlice'
 
 function Login() {
   

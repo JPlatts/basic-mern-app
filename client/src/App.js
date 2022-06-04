@@ -1,13 +1,14 @@
 
 import './App.css';
-import 'bulma/css/bulma-rtl.min.css'
+import 'bulma/css/bulma.min.css'
 import 'react-toastify/dist/ReactToastify.css'
 import {Routes, Route, Link} from 'react-router-dom';
-import Nav from './components/Nav';
-import LogIn from './routes/LogIn';
-import Register from './routes/Register';
+import Nav from './app/Nav';
+import LogIn from './features/auth/LogIn';
+import Register from './features/auth/Register';
+import Deciders from './features/deciders/Deciders';
 import { ToastContainer} from 'react-toastify'
-import AccountConfirmation from './components/AccountConfirmation';
+import AccountConfirmation from './features/auth/AccountConfirmation';
 
 function App() {
   return (
@@ -16,9 +17,17 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<LogIn vice="citys" />} />
+        <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/deciders" element={<Deciders />} />
       </Routes>
+      <footer className="footer">
+        <div className="content has-text-centered">
+          <p>
+            Copyright © {new Date().getFullYear()}
+          </p>
+        </div>
+      </footer>
       <ToastContainer />
       <AccountConfirmation />
     </div>
@@ -39,15 +48,22 @@ function About() {
   )
 }
 function Home() {
+  let message = '';
+  try {
+    throw new Error("COWS ARE LYING")
+  } catch (error) {
+    console.log(JSON.stringify(error));
+    message = JSON.stringify(error);
+    /*
+      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      */
+  }
   return (
     <>
-      <main>
-        <h2>Home</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
+      <div className='container'>
+        <h1 className='title' >{message}</h1>
+      </div>
+     
     </>
   )
 }

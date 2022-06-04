@@ -30,6 +30,8 @@ router.post('/confirm', async (req, res) => {
   try {
     let usr = await User.confirm(req.body.userID, req.body.confirmationCode);
     if (usr) {
+      const accessToken = jwt.sign({ user: user, created: new Date()}, JWT_KEY);
+      usr.token = accessToken;
       res.status(200).json({ msg:'Success', user: usr });
     } else {
       res.status(400).json({ msg: 'Invalid confirmation code.' });
@@ -47,6 +49,7 @@ router.post('/authenticate', async (req, res) => {
 
     if(user && user.confirmationDate) {
       const accessToken = jwt.sign({ user: user, created: new Date()}, JWT_KEY);
+      user.token = accessToken;
       res.status(200).json({user: user, token: accessToken, msg:'success' });
     } else if(user && !user.confirmationDate) {
       res.status(201).json({user: user, msg:'Account has not been confirmed.'});

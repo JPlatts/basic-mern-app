@@ -1,3 +1,6 @@
+.panel-block.is-active {
+  background-color:bisque;
+}
 
 
 @media (prefers-reduced-motion: no-preference) {

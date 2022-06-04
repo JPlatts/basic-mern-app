@@ -3,6 +3,8 @@ import authService from './authService';
 
 const user = JSON.parse(localStorage.getItem('user'));
 
+
+
 const initialState = {
   user: user ? user : null,
   isError: false,
@@ -15,12 +17,7 @@ const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
   try {
     return await authService.register(user);
   } catch (error) {
-    let message = (error.response &&
-      error.response.data &&
-      error.response.data.message) ||
-      error.message ||
-      error.toString();
-    return thunkAPI.rejectWithValue(message)
+    return thunkAPI.rejectWithValue(error.message)
   }
 });
 
@@ -28,12 +25,7 @@ const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     return await authService.login(user);
   } catch (error) {
-    let message = (error.response &&
-      error.response.data &&
-      error.response.data.message) ||
-      error.message ||
-      error.toString();
-    return thunkAPI.rejectWithValue(message)
+    return thunkAPI.rejectWithValue(error.message)
   }
 });
 
@@ -41,17 +33,17 @@ const confirm = createAsyncThunk('auth/confirm', async (conf, thunkAPI) => {
   try {
     return await authService.confirm(conf);
   } catch (error) {
-    let message = (error.response &&
-      error.response.data &&
-      error.response.data.message) ||
-      error.message ||
-      error.toString();
-    return thunkAPI.rejectWithValue(message)
+    return thunkAPI.rejectWithValue(error.message)
   }
 });
 
-const logout = createAsyncThunk('auth/logout', async () => {
-  await authService.logout()
+const logout = createAsyncThunk('auth/logout', async (_,thunkAPI) => {
+  try {
+    return await authService.logout();
+  } catch (error){
+    return thunkAPI.rejectWithValue(error.message)
+  }
+  
 });
 
 const authSlice = createSlice({

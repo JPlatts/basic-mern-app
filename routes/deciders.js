@@ -47,7 +47,7 @@ router.post('/add-item', async(req, res) => {
 router.post('/delete-item', async(req, res) => {
   try {
     let user = await req.user.populate('deciders');
-    let decider = user.deciders.find(d => d._id == req.body.deciderID);
+    let decider = user.deciders.find(d => d.items.some((i) => i._id == req.body.itemID));
     let item = decider.items.find(f => f._id == req.body.itemID)
     decider.items.pull(item);
     await decider.save();

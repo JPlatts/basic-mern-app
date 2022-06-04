@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { confirm, reset } from '../features/auth/authSlice'
+import { confirm, reset } from './authSlice'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
-import Spinner from './Spinner';
+import Spinner from '../../app/Spinner';
 
 function AccountConfirmation() {
   
