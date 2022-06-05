@@ -10,8 +10,8 @@ import { login, forgotpw, reset } from './authSlice'
 function Login() {
   
   const [formData, setFormData] = useState({
-    email: 'japlatts@gmail.com',
-    password: '1Double2@',
+    email: '',
+    password: '',
   });
 
   // unpack local state

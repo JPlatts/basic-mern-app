@@ -10,11 +10,11 @@ import { register, reset } from './authSlice'
 function Register() {
   
   const [formData, setFormData] = useState({
-    firstName: 'Joe',
-    lastName: 'Platts',
-    email: 'japlatts@gmail.com',
-    password: '1Double2@',
-    confirmPassword: '1Double2@',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   // unpack local state

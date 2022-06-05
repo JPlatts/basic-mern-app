@@ -1,12 +1,19 @@
-import { FaHome, FaDice, FaTrain, FaInfoCircle} from 'react-icons/fa';
+import { FaHome, FaDice, FaTrain, FaInfoCircle, FaChevronRight } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+const { Link } = require('react-router-dom');
 
 function Home() {
+
+  const {user} = useSelector((s) => (s.auth))
+  
+
   return (
     <div className="section">
       <div className="content">
         <h1><FaHome /> Home </h1>
       </div>
       <hr />
+      
       <div className="columns">
         <div className="column">
           <div className="card">
@@ -28,6 +35,11 @@ function Home() {
                 many decider lists as you want. They'll be here when 
                 you come back.
               </div>
+              <div className="content">
+                {!user && <Link className='button is-link is-outlined' to="/login"><FaChevronRight /> Login to Access</Link>}
+                {user && <Link className='button is-link is-outlined' to="/deciders"><FaChevronRight />Decider</Link>}
+              </div>
+              
             </div>
           </div>
         </div>
@@ -51,6 +63,9 @@ function Home() {
                 in real time). Always available. No more fumbling 
                 between apps and refreshing to see how long you're 
                 going to wait or if you should start running :-)
+              </div>
+              <div className="content">
+                <Link className='button is-link is-outlined' to="/"><FaChevronRight /> Coming Soon</Link>
               </div>
             </div>
           </div>
@@ -77,6 +92,9 @@ function Home() {
                 MERN stack. It is super nice to be able to build 
                 everthing with JavaScript! See the about page 
                 for a link to my GitHub for this project.
+              </div>
+              <div className="content">
+                <Link className='button is-link is-outlined' to="/about"><FaChevronRight /> About</Link>
               </div>
             </div>
           </div>

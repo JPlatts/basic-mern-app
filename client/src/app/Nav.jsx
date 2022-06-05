@@ -1,5 +1,5 @@
 import LoginButton from '../features/auth/LoginButton';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 const React = require('react');
 const { Link } = require('react-router-dom');
 const { FaMeteor, FaDice, FaInfoCircle } = require('react-icons/fa');

@@ -6,6 +6,8 @@
   font-size: 48px;
 }
 
+
+
 @media (prefers-reduced-motion: no-preference) {
   .Spinner-spin {
     animation: Spinner-spin infinite 2s linear;
