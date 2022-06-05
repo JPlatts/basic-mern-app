@@ -76,7 +76,7 @@ userSchema.methods.resetPassword = async function resetPassword(resetCode, newPa
       this.pwResetRequests = [];
       this.passwordSetDate = new Date();
       await this.save();
-      return true;
+      return await User.desensitize(this);
     } catch (err) {
       console.log(err);
       return false;

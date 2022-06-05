@@ -3,9 +3,9 @@ import { toast } from 'react-toastify';
 import { validateEmail, validatePassword } from '../../modules/common'
 import Spinner from '../../app/Spinner';
 import { useNavigate } from 'react-router-dom'
-import { FaUserCheck, FaUserPlus } from 'react-icons/fa'
+import { FaUserCheck, FaUserPlus, FaBrain } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { login, reset } from './authSlice'
+import { login, forgotpw, reset } from './authSlice'
 
 function Login() {
   
@@ -18,7 +18,7 @@ function Login() {
   const { email, password } = formData;
   
   // unpack redux state
-  const { user, isLoading, isSuccess, isError, message} = useSelector((state) => state.auth);
+  const { user, isResettingPassword, isLoading, isSuccess, isError, message} = useSelector((state) => state.auth);
 
   
   const navigate = useNavigate();
@@ -33,14 +33,20 @@ function Login() {
 
   //react hook for watching changes
   useEffect(() => {
+    
+    if(isResettingPassword) {
+      navigate('/resetpw', {state: { email: email }})
+    }
 
-    if(isSuccess || user) {
+    if(isSuccess && user) {
       navigate('/');
     }
 
+    
+
     dispatch(reset());
 
-  }, [isError, message, isSuccess, user, navigate, dispatch]);
+  }, [isError, message, isSuccess, user, email, isResettingPassword, navigate, dispatch]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -53,6 +59,14 @@ function Login() {
   
   const register = (e) => {
     navigate('/register');
+  }
+
+  const forgot = (e) => {
+    if ( !validateEmail(email)) {
+      toast.error('Email is required.');
+    } else {
+      dispatch(forgotpw(formData));
+    }
   }
 
   if(isLoading) {
@@ -79,6 +93,9 @@ function Login() {
               </div>
               <div className="control">
                 <button type='button' className="button is-link is-success" onClick={(e) => register()}><FaUserPlus />&nbsp;Sign Up!</button>
+              </div>
+              <div className="control">
+                <button type='button' className="button is-link is-warning" onClick={(e) => forgot()}><FaBrain />&nbsp;Forgot Password?</button>
               </div>
             </div>
           </div>

@@ -2,6 +2,9 @@
   background-color:bisque;
 }
 
+.icon-48 {
+  font-size: 48px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .Spinner-spin {

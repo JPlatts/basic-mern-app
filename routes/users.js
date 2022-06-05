@@ -30,10 +30,12 @@ router.post('/confirm', async (req, res) => {
   try {
     let usr = await User.confirm(req.body.userID, req.body.confirmationCode);
     if (usr) {
-      const accessToken = jwt.sign({ user: user, created: new Date()}, JWT_KEY);
+      console.log(usr);
+      const accessToken = jwt.sign({ user: usr, created: new Date()}, JWT_KEY);
       usr.token = accessToken;
       res.status(200).json({ msg:'Success', user: usr });
     } else {
+      console.log('wha');
       res.status(400).json({ msg: 'Invalid confirmation code.' });
     }
   } catch (err) {
@@ -62,26 +64,6 @@ router.post('/authenticate', async (req, res) => {
   
 });
 
-router.post('/reauthenticate', async (req, res) => {
-  try {
-
-    let unpacked = jwt.verify(req.body.token, JWT_KEY);
-    let user = await User.findById(unpacked.user._id);
-    if(!user) {
-      console.log('reauth user not found')
-    }
-    if(unpacked && unpacked.user && user && unpacked.user.confirmationDate) {
-      res.status(200).json({user: unpacked.user, token: req.body.token, msg:'success' });
-    } else {
-      res.status(202).json({ msg:'Authentication Failed' });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ msg:'Invalid Request' });
-  }
-  
-});
-
 router.post('/forgotpw', async (req, res) => {
   try {
     let user = await User.findOne({email:req.body.email});
@@ -91,7 +73,7 @@ router.post('/forgotpw', async (req, res) => {
       res.status(203).json({msg:'An active password reset request already exists. Please try again later.' });
     } else {
       await User.requestPwReset(user);
-      res.status(200).json({msg:'Success.' });
+      res.status(200).json({msg:'Success.', isSuccess: true });
     }
     
   } catch (err) {
@@ -109,9 +91,12 @@ router.post('/resetpw', async (req, res) => {
     if(!user) {
       res.status(202).json({ msg:'Account not found.' });
     } else {
-      let s = await user.resetPassword(req.body.resetCode, req.body.password);
-      if(s) {
-        res.status(200).json({msg:'Success.' });
+      let u = await user.resetPassword(req.body.resetCode, req.body.password);
+      if(u) {
+        
+        const accessToken = jwt.sign({ user: u, created: new Date()}, JWT_KEY);
+        u.token = accessToken;
+        res.status(200).json({msg:'Success.', user: u });
       } else {
         res.status(400).json({ msg:'Invalid Request' });    
       }
