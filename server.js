@@ -26,7 +26,7 @@ app.use('/api/deciders', require('./routes/deciders'));
 
 if (environment === 'production' || environment === 'test') {
     app.use(history({ verbose:true }));
-    app.use(express.static('client/dist'));
+    app.use(express.static('client/build'));
 }
 
 if (sslConfig.useSSL) {
