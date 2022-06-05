@@ -1,8 +1,8 @@
-import {FaTrash, FaPlusCircle, FaDice} from 'react-icons/fa'
+import { FaPlusCircle, FaDice, FaTrashAlt } from 'react-icons/fa'
 import DeciderItem from './DeciderItem';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {  addItem, decide } from './deciderSlice'
+import {  deleteDecider, addItem, decide } from './deciderSlice'
 
 function Decider(props) {
   
@@ -11,9 +11,13 @@ function Decider(props) {
   const [newItemText, setItemText] = useState('');
 
   const addNewItem = () => {
-    dispatch(addItem({deciderID: props.decider._id, text: newItemText}))
+    dispatch(addItem({deciderID: props.decider._id, text: newItemText}));
     setItemText('');
   };
+
+  const deleteMe = () => {
+    dispatch(deleteDecider({ deciderID: props.decider._id }));
+  }
 
   const handleReturn = (e) => {
     if(e.key === 'Enter') {
@@ -26,18 +30,18 @@ function Decider(props) {
   }
   
   return (
-    <div className="section">
+    <div className="container">
       <div className="columns">
         <div className="column is-three-fifths is-offset-one-fifth">
           <article className="panel is-primary">
             <div className="panel-heading">
-              <div className="columns">
-                <div className="column  is-11">
+              <div className="columns is-mobile">
+                <div className="column is-11">
                   {props.decider && props.decider.name}
                 </div>
-                <div className="column  is-1 has-text-right">
-                  <FaTrash />
-                </div>
+                <div className="column is-1">
+                  <FaTrashAlt onClick={deleteMe} />
+                </div>  
               </div>
             </div>
             
@@ -58,6 +62,8 @@ function Decider(props) {
               <button className="button is-info" onClick={makeDecision} ><FaDice />&nbsp;Decide </button>
             </div>
           </article>
+
+          
         </div>
       </div>
     </div>

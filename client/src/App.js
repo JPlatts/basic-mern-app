@@ -25,6 +25,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/deciders" element={<Deciders />} />
       </Routes>
+      <AccountConfirmation />
       <footer className="footer">
         <div className="content has-text-centered">
           <p>
@@ -33,7 +34,6 @@ function App() {
         </div>
       </footer>
       <ToastContainer />
-      <AccountConfirmation />
     </div>
   );
 }

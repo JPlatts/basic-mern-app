@@ -19,6 +19,24 @@ const getDeciders = createAsyncThunk('deciders/getdeciders', async (_, thunkAPI)
   }
 });
 
+const addDecider = createAsyncThunk('deciders/adddecider', async (decider, thunkAPI) => {
+  try {
+    let token = thunkAPI.getState().auth.user.token;
+    return await deciderService.addDecider(token, decider);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+  }
+});
+
+const deleteDecider = createAsyncThunk('deciders/deletedecider', async (decider, thunkAPI) => {
+  try {
+    let token = thunkAPI.getState().auth.user.token;
+    return await deciderService.deleteDecider(token, decider);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+  }
+});
+
 const addItem = createAsyncThunk('deciders/additem', async (deciderItem, thunkAPI) => {
   try {
     let token = thunkAPI.getState().auth.user.token;
@@ -72,6 +90,57 @@ const deciderSlice = createSlice({
     });
 
     bldr.addCase(getDeciders.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.message = action.payload;
+    });
+
+    bldr.addCase(addDecider.pending, (state) => {
+      state.isLoading = true;
+    });
+    
+    bldr.addCase(addDecider.fulfilled, (state, action) => {
+      state.isLoading = false;
+      
+      if (action.payload.decider) {
+        state.isSuccess = true;
+        state.isError = false;
+        state.deciders.push(action.payload.decider)
+      } else {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload.msg;
+      }
+    });
+
+    bldr.addCase(addDecider.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.message = action.payload;
+    });
+
+    bldr.addCase(deleteDecider.pending, (state) => {
+      state.isLoading = true;
+    });
+    
+    bldr.addCase(deleteDecider.fulfilled, (state, action) => {
+      state.isLoading = false;
+      
+      if (action.payload.deciderID) {
+        state.isSuccess = true;
+        state.isError = false;
+        //remove from array
+        state.deciders.splice(state.deciders.findIndex((d)=> d._id === action.payload.deciderID), 1);
+      } else {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload.msg;
+      }
+    });
+
+    bldr.addCase(deleteDecider.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.isSuccess = false;
@@ -138,6 +207,6 @@ const deciderSlice = createSlice({
   }
 });
 
-export { getDeciders, addItem, deleteItem }
+export { getDeciders, addDecider,deleteDecider, addItem, deleteItem }
 export const { reset, decide } = deciderSlice.actions;
 export default deciderSlice.reducer;

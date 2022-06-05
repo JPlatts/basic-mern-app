@@ -1,17 +1,21 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
+import { FaDice } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { getDeciders, reset } from './deciderSlice'
 import Decider from './Decider';
 import { toast } from 'react-toastify';
 import Spinner from '../../app/Spinner';
+import DeciderForm from './DeciderForm';
 
 function Deciders() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {user} = useSelector((state) => state.auth);
   const {deciders, isError, message, isLoading} = useSelector((state) => state.deciders)
+  
 
+  
 
   useEffect(()=>{
     if(isError) {
@@ -30,9 +34,16 @@ function Deciders() {
   }
 
   return (
-    <>
-        {deciders.map((d) => (<Decider key={d._id} decider={d}/>))}
-    </>
+    <div className="section">
+      <div className="content">
+        <h1><FaDice /> Decider </h1>
+      </div>
+      <hr />
+      {deciders.map((d) => (<Decider key={d._id} decider={d}/>))}
+      <DeciderForm />
+    </div>
+        
+    
   );
 }
 

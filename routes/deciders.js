@@ -65,7 +65,7 @@ router.post('/delete', async(req, res) => {
     user.deciders.pull(decider)
     await user.save();
     await Decider.deleteOne({_id: req.body.deciderID})
-    res.status(200).json({ msg:'Success', deciders: user.deciders });
+    res.status(200).json({ msg:'Success', deciderID: req.body.deciderID });
   } catch (err) {
     console.log(err);
     res.status(400).json({ msg:'Invalid Request' });

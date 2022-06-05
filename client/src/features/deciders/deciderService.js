@@ -13,6 +13,38 @@ const getDeciders = async (token) => {
   return data;
 };
 
+const addDecider = async (token, decider) => {
+  let ah = new Headers();
+  ah.append('Content-Type', 'application/json');
+  ah.append('Authorization', token);
+  let response = await fetch(API_URL + 'add', { 
+        method: 'POST',
+        headers: ah,
+        body: JSON.stringify({
+          ...decider,
+        }),
+
+      });
+  let data = await response.json();
+  return data;
+};
+
+const deleteDecider = async (token, decider) => {
+  let ah = new Headers();
+  ah.append('Content-Type', 'application/json');
+  ah.append('Authorization', token);
+  let response = await fetch(API_URL + 'delete', { 
+        method: 'POST',
+        headers: ah,
+        body: JSON.stringify({
+          ...decider,
+        }),
+
+      });
+  let data = await response.json();
+  return data;
+};
+
 const addItem = async (token, deciderItem) => {
   let ah = new Headers();
   ah.append('Content-Type', 'application/json');
@@ -26,7 +58,6 @@ const addItem = async (token, deciderItem) => {
 
       });
   let data = await response.json();
-  
   return data;
 };
 
@@ -49,6 +80,8 @@ const deleteItem = async (token, deciderItem) => {
 
 const deciderService = {
   getDeciders,
+  addDecider,
+  deleteDecider,
   addItem,
   deleteItem
 };

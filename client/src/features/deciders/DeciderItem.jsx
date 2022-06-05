@@ -1,5 +1,5 @@
 
-import { FaTrash } from 'react-icons/fa'
+import { FaTrashAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import {  deleteItem } from './deciderSlice'
 
@@ -13,7 +13,7 @@ function DeciderItem(props) {
 
   return (
     <div className={`panel-block ${props.item.isChosen ? 'is-active' : ''}`}>
-      <span className="panel-icon is-left"><FaTrash onClick={removeItem} /></span>
+      <span className="panel-icon is-left"><FaTrashAlt onClick={removeItem} /></span>
       {props.item && props.item.text}
     </div>
   );
