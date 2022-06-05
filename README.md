@@ -4,10 +4,10 @@ A basic single page web application (SPA) with an API for jwt based authenticati
 This project is a great starter for building a web application with membership on the mern stack.
 
 <p align="left">
-  <img src="./client/src//assets/mongo-logo.svg" height="80" alt="MongoDB" title="MongoDB">&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="./client/src//assets/express-logo.png" height="80" alt="Express" title="Express">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="./client/src/assets/react-logo.png" height="80" alt="React" title="React">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="./client/src/assets/node-logo.svg" height="80" alt="Node" title="Node">
+  <img src="./client/src//assets/mongo-logo.svg" width="128" alt="MongoDB" title="MongoDB">&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./client/src//assets/express-logo.png" width="128" alt="Express" title="Express">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./client/src/assets/react-logo.png" width="128" alt="React" title="React">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./client/src/assets/node-logo.svg" width="128" alt="Node" title="Node">
 </p>
 
 ## Table of Contents  
