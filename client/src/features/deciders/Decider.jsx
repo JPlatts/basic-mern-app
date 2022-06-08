@@ -33,7 +33,7 @@ function Decider(props) {
     <div className="container">
       <div className="columns">
         <div className="column is-three-fifths is-offset-one-fifth">
-          <article className="panel is-primary">
+          <article className="panel is-info">
             <div className="panel-heading">
               <div className="columns is-mobile">
                 <div className="column is-11">
