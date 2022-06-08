@@ -8,8 +8,8 @@ function Home() {
   
 
   return (
-    <div className="section">
-      <div className="content">
+    <div className="container">
+      <div className=" hero content">
         <h1><FaHome /> Home </h1>
       </div>
       <hr />

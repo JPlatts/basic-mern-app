@@ -77,7 +77,7 @@ function Login() {
     <div className="section">
       <form onSubmit={onSubmit}>
         <div className="columns is-mobile is-centered">
-          <div className="column is-half">
+          <div className="column is-four-fifths">
             <h1 className='title'>Please sign in!</h1>
             <div className="field">
               <input className="input" type="text" name="email" id="email" value={email} 
@@ -87,15 +87,19 @@ function Login() {
               <input className="input" type="password" name="password" id="password" value={password} 
                 onChange={onChange} placeholder="Password" autoComplete="off" />
             </div>
-            <div className="field is-grouped">
+            <div className="field ">
               <div className="control">
-                <button className="button is-link"><FaUserCheck />&nbsp;Sign in.</button>&nbsp;&nbsp;
+                <button className="button is-small is-fullwidth is-link"><FaUserCheck />&nbsp;Sign in.</button>
               </div>
+            </div>
+            <div className="field">
               <div className="control">
-                <button type='button' className="button is-link is-success" onClick={(e) => register()}><FaUserPlus />&nbsp;Sign Up!</button>
+                <button type='button' className="button is-small is-fullwidth is-link is-success" onClick={(e) => register()}><FaUserPlus />&nbsp;Sign Up!</button>
               </div>
+            </div>
+            <div className="field">
               <div className="control">
-                <button type='button' className="button is-link is-warning" onClick={(e) => forgot()}><FaBrain />&nbsp;Forgot Password?</button>
+                <button type='button' className="button is-small is-link is-warning is-fullwidth" onClick={(e) => forgot()}><FaBrain />&nbsp;Forgot Password?</button>
               </div>
             </div>
           </div>

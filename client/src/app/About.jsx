@@ -1,5 +1,5 @@
-import mongoLogo from '../assets/mongo-logo.svg';
-import expressLogo from '../assets/express-logo.png';
+import mongoLogo from '../assets/mongo-logo.png';
+import expressLogo from '../assets/express-logo2.png';
 import reactLogo from '../assets/react-logo.png';
 import nodeLogo from '../assets/node-logo.svg';
 const { FaInfoCircle, FaGithub } = require('react-icons/fa');
@@ -11,7 +11,7 @@ function About() {
   }
 
   return (
-    <div className="section">
+    <div className="container">
       <div className="content">
         <h1><FaInfoCircle /> About </h1>
       </div>
@@ -25,23 +25,23 @@ function About() {
       <button type="button" className=' button is-primary' onClick={handleClick}><FaGithub />&nbsp;GitHub</button>
       </div>
       <div className="columns">
-        <div className="column">
-          <figure className="image is-256x256">
+        <div className="column has-text-centered" >
+          <figure className="image is-128x128 is-inline-block">
             <img src={mongoLogo} alt="MongoDB"></img>
           </figure>
         </div>
-        <div className="column">
-          <figure className="image is-256x256">
+        <div className="column has-text-centered" >
+          <figure className="image is-128x128 is-inline-block">
             <img src={expressLogo} alt="Express"></img>
           </figure>
         </div>
-        <div className="column">
-          <figure className="image is-256x256">
+        <div className="column has-text-centered" >
+          <figure className="image is-128x128 is-inline-block">
             <img src={reactLogo} alt="React"></img>
           </figure>
         </div>
-        <div className="column">
-          <figure className="image is-256x256">
+        <div className="column has-text-centered" >
+          <figure className="image is-128x128 is-inline-block">
             <img src={nodeLogo} alt="Node"></img>
           </figure>
         </div>

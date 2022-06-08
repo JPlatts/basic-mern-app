@@ -9,7 +9,7 @@ function Nav() {
   const {user} = useSelector((state) => state.auth);
   return (
     <section className="">
-      <nav className="navbar is-light">
+      <nav className="navbar  ">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/" >
             <FaMeteor />&nbsp;<strong>PlattsWork</strong>

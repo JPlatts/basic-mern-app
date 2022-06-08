@@ -30,12 +30,10 @@ router.post('/confirm', async (req, res) => {
   try {
     let usr = await User.confirm(req.body.userID, req.body.confirmationCode);
     if (usr) {
-      console.log(usr);
       const accessToken = jwt.sign({ user: usr, created: new Date()}, JWT_KEY);
       usr.token = accessToken;
       res.status(200).json({ msg:'Success', user: usr });
     } else {
-      console.log('wha');
       res.status(400).json({ msg: 'Invalid confirmation code.' });
     }
   } catch (err) {

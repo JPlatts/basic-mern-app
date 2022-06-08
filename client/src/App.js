@@ -1,6 +1,5 @@
-
-import './App.css';
 import 'bulma/css/bulma.min.css'
+import './App.css';
 import 'react-toastify/dist/ReactToastify.css'
 import {Routes, Route } from 'react-router-dom';
 import Nav from './app/Nav';
@@ -15,7 +14,8 @@ import AccountConfirmation from './features/auth/AccountConfirmation';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
+      <main>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,14 +26,15 @@ function App() {
         <Route path="/deciders" element={<Deciders />} />
       </Routes>
       <AccountConfirmation />
+      <ToastContainer />
       <footer className="footer">
-        <div className="content has-text-centered">
+        <div className="content has-text-centered mt-auto">
           <p>
             Copyright © {new Date().getFullYear()}
           </p>
         </div>
       </footer>
-      <ToastContainer />
+      </main>
     </div>
   );
 }

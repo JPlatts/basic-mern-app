@@ -70,7 +70,7 @@ function Register() {
     <div className="section">
       <form onSubmit={onSubmit}>
         <div className="columns is-mobile is-centered">
-          <div className="column is-half">
+          <div className="column is-three-fifths">
             <h1 className='title'>Please sign up!</h1>
             <div className="field">
               <input type="text" className={`input ${firstName.trim().length === 0  ? 'is-danger' : 'is-success'}`}
