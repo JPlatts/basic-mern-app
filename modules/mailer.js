@@ -33,7 +33,6 @@ function mailer() {
   }
 
   this.sendMail = async (user, subject, html) => {
-    console.log('FROMFROMFROM ' + smtpSettings.fromAddress);
     if (smtpSettings.useSendGrid) {
       sgMail.setApiKey(smtpSettings.sendGridKey);
       const msg = {
