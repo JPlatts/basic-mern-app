@@ -60,8 +60,8 @@ function ResetPw() {
   return (
     <div className="section">
       <form onSubmit={onSubmit}>
-        <div className="columns is-mobile is-centered">
-          <div className="column is-half">
+        <div className="columns is-centered">
+          <div className="column is-half box">
             <h1 className='title'>Reset password!</h1>
             <p>An email has been sent with a password reset validation code.</p>
             <div className="field">
@@ -94,13 +94,11 @@ function ResetPw() {
               <p className={`help is-danger ${confirmPassword.trim().length !== 0  ? 'is-hidden' : ''}`} >Password confirmation is required.</p>
               <p className={`help is-danger ${confirmPassword.trim().length > 0 && password !== confirmPassword ? '' : 'is-hidden'}`} >Passwords do not match.</p>
             </div>
-
             
-            <div className="field is-grouped">
+            <div className="field ">
               <div className="control">
-                <button className="button is-link"><FaUserCheck />&nbsp;Set password.</button>&nbsp;&nbsp;
+                <button className="button is-medium is-fullwidth is-link"><FaUserCheck />&nbsp;Set password.</button>
               </div>
-              
             </div>
           </div>
         </div>

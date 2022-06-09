@@ -69,9 +69,10 @@ function Register() {
   return (<>
     <div className="section">
       <form onSubmit={onSubmit}>
-        <div className="columns is-mobile is-centered">
-          <div className="column is-three-fifths">
-            <h1 className='title'>Please sign up!</h1>
+        <div className="columns is-centered">
+          <div className="column is-half box">
+            <h1 className='title'>Welcome!</h1>
+            <p className="subtitle">Please sign up.</p>
             <div className="field">
               <input type="text" className={`input ${firstName.trim().length === 0  ? 'is-danger' : 'is-success'}`}
               name="firstName" id="firstName" 
@@ -108,13 +109,10 @@ function Register() {
               <p className={`help is-danger ${confirmPassword.trim().length !== 0  ? 'is-hidden' : ''}`} >Password confirmation is required.</p>
               <p className={`help is-danger ${confirmPassword.trim().length > 0 && password !== confirmPassword ? '' : 'is-hidden'}`} >Passwords do not match.</p>
             </div>
-
-            
-            <div className="field is-grouped">
+            <div className="field ">
               <div className="control">
-                <button className="button is-link"><FaUserPlus />&nbsp;Sign up.</button>&nbsp;&nbsp;
+                <button className="button is-medium is-fullwidth is-link"><FaUserPlus />&nbsp;Sign up.</button>
               </div>
-              
             </div>
           </div>
         </div>
