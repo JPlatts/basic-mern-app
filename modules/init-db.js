@@ -1,3 +1,5 @@
+const Station = require('../models/station');
+
 //import configuration
 const { mongoUri } = require('./config');
 
@@ -16,6 +18,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', function(){
     console.log('Connected to "basic-mern-app" database.')
 });
+
+Station.loadFromMTAFile();
 
 module.exports = db;
 

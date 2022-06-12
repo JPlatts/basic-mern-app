@@ -4,6 +4,7 @@ module.exports = {
     mongoUri: process.env.MONGO_URI || 'mongodb://localhost/basic-mern-app',
     PORT: process.env.PORT || 3000,
     JWT_KEY: process.env.JWT_KEY || 'Best_Be_Overridding_THIS_for__SECURITY__',
+    MTA_KEY: process.env.MTA_KEY || 'ADD YOUR MTA KEY',
     smtpSettings: {
       useSendGrid: true,
       server: process.env.SMTP_SERVER || 'smtp.server.com',

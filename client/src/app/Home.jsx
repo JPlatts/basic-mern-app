@@ -65,7 +65,8 @@ function Home() {
                 going to wait or if you should start running :-)
               </div>
               <div className="content">
-                <Link className='button is-link is-outlined' to="/"><FaChevronRight /> Coming Soon</Link>
+                {!user && <Link className='button is-link is-outlined' to="/login"><FaChevronRight /> Login to Access</Link>}
+                {user && <Link className='button is-link is-outlined' to="/nextrains"><FaTrain />&nbsp;NexTrain</Link>}
               </div>
             </div>
           </div>
