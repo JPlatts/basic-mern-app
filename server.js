@@ -25,6 +25,8 @@ app.use('/api/deciders', require('./modules/auth-middleware'));
 app.use('/api/deciders', require('./routes/deciders'));
 app.use('/api/nextrains', require('./modules/auth-middleware'));
 app.use('/api/nextrains', require('./routes/nextrains'));
+app.use('/api/stations', require('./modules/auth-middleware'));
+app.use('/api/stations', require('./routes/stations'));
 
 if (environment === 'production' || environment === 'test') {
     app.use(history({ verbose:true }));

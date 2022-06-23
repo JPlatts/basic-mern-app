@@ -10,7 +10,7 @@ const stationSchema = mongoose.Schema({
   },
   name: { type: String },
   line: { type: String },
-  routes: [{ route:String, endpoint:String }],
+  routes: [{ route:String, endpoint:String, img: { data: Buffer, contentType: String } }],
   northLabel: { type: String },
   southLabel: { type: String },
   latitude:{ type: mongoose.Decimal128},
@@ -44,7 +44,15 @@ stationSchema.statics.loadFromMTAFile = async () => {
 
     station.routes = routeData.filter((r) => {
       return s.Routes.split(" ").some((v) => v === r.route);
-    })
+    }).map((r) => { 
+      return {
+        ...r,
+        img: {
+          data: fs.readFileSync(`./metadata/route-images/${r.route}.svg`),
+          contentType: 'image/svg'
+        }
+      };
+    });
     
     station.save()  
   });
@@ -53,7 +61,9 @@ stationSchema.statics.loadFromMTAFile = async () => {
 }
 
 stationSchema.statics.search = async (term) => {
-  return await Station.find({ name: { "$regex": term, "$options": "i" }  })
+  const regex = new RegExp(term, 'i');
+  return await Station.find({ "name": { "$regex": regex } }).limit(7);
+  
 }
   
 

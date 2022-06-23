@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getNextrains, reset } from './nextrainSlice'
 import { toast } from 'react-toastify';
 import Spinner from '../../app/Spinner';
+import StationFinder from './StationFinder'
 
 
 function Nextrains() {
@@ -30,6 +31,10 @@ function Nextrains() {
     return (<Spinner>Loading Nextrains ...</Spinner>);
   }
 
+  const stationChosen = (value) => {
+    console.log(value);
+  }
+
   return (
     <div className="">
       <div className="columns is-centered">
@@ -40,6 +45,7 @@ function Nextrains() {
             <hr />
             {nextrains && <p>{JSON.stringify(nextrains)}</p>}
           </div>
+          <StationFinder stationChosen={stationChosen} />
         </div>
       </div>
     </div>
