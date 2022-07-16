@@ -12,8 +12,10 @@ const searchStations = async (searchRequest, token) => {
   return data;
 };
 
+
+
 const stationService = {
-  searchStations,
+  searchStations
 };
 
 export default stationService;

@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <div className="container">
-      <div className=" hero content">
+      <div className="content">
         <h1><FaHome /> Home </h1>
       </div>
       <hr />
@@ -39,7 +39,6 @@ function Home() {
                 {!user && <Link className='button is-link is-outlined' to="/login"><FaChevronRight /> Login to Access</Link>}
                 {user && <Link className='button is-link is-outlined' to="/deciders"><FaChevronRight />Decider</Link>}
               </div>
-              
             </div>
           </div>
         </div>

@@ -2,18 +2,19 @@ const express = require('express');
 const router = express.Router();
 const https = require('https');
 const protobuf = require('protobufjs');
+const nextrain = require('../modules/nextrain');
 const fs = require('fs');
-//const dt = require('date-and-time');
 const { MTA_KEY } = require('../modules/config');
+
 
 
 
 router.get('/', async (req, res) => {
   try {
-    //let user = await req.user.populate('deciders');
-    
-    let user = req.user;
-       
+
+    let u = await req.user.populate('stations');
+    let nts = await nextrain(u.stations);
+
     let chunks = [];
     let root = protobuf.loadSync('./metadata/gtfs-realtime.proto');
     let feedMessage = root.lookupType('transit_realtime.FeedMessage');
@@ -37,7 +38,7 @@ router.get('/', async (req, res) => {
             }
           });
           
-          res.status(200).json({ msg:'Success', records: b  });
+          res.status(200).json({ msg:'Success', nextrains: nts  });
         });
       }).on("error", (err) => {
         console.log("Error: " + err.message);

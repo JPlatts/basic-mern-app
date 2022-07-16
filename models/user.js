@@ -53,7 +53,9 @@ const userSchema = mongoose.Schema({
   },
   pwResetRequests: [PwResetRequest.schema],
 
-  deciders : [{ type: mongoose.Schema.Types.ObjectId, ref:'Decider' }]
+  deciders : [{ type: mongoose.Schema.Types.ObjectId, ref:'Decider' }],
+  
+  stations : [{ type: mongoose.Schema.Types.ObjectId, ref:'Station' }]
     
 
 });

@@ -21,6 +21,8 @@ db.once('open', function(){
 
 Station.loadFromMTAFile();
 
+//Station.tryHashTable();
+
 module.exports = db;
 
 

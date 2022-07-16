@@ -34,7 +34,7 @@ function Deciders() {
   }
 
   return (
-    <div className="section">
+    <div className="container">
       <div className="content">
         <h1><FaDice /> Decider </h1>
       </div>

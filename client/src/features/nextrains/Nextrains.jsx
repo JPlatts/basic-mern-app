@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 import { FaTrain } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { getNextrains, reset } from './nextrainSlice'
+import { getNextrains,addStation, reset } from './nextrainSlice'
 import { toast } from 'react-toastify';
 import Spinner from '../../app/Spinner';
-import StationFinder from './StationFinder'
+import NextrainForm from './NextrainForm';
+
 
 
 function Nextrains() {
@@ -20,7 +21,7 @@ function Nextrains() {
       toast.error(message);
     }
     if(user) {
-      dispatch(getNextrains(user.token))
+      dispatch(getNextrains())
     } else {
       navigate('/');
     }
@@ -32,22 +33,18 @@ function Nextrains() {
   }
 
   const stationChosen = (value) => {
-    console.log(value);
+    dispatch(addStation(JSON.parse(value)));
   }
 
   return (
-    <div className="">
-      <div className="columns is-centered">
-        <div className="column is-four-fifths box">
-          <div className="content">
-            <h1><FaTrain /> NexTrain</h1>
-            <p className="subtitle">Oi vey, protobuffers.</p>
-            <hr />
-            {nextrains && <p>{JSON.stringify(nextrains)}</p>}
-          </div>
-          <StationFinder stationChosen={stationChosen} />
-        </div>
+    <div className="container">
+      <div className="content">
+        <h1><FaTrain /> NexTrain</h1>
+        <p className="subtitle">Oi vey, protobuffers.</p>
+        <hr />
+        {nextrains && <p>{JSON.stringify(nextrains)}</p>}
       </div>
+      <NextrainForm stationChosen={stationChosen} />
     </div>
   );
 
