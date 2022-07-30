@@ -10,7 +10,6 @@ router.get('/find/:searchText', async (req, res) => {
     if(!req.params.searchText) {
       res.status(400).json({ msg: 'Invalid Request.' });
     } else {
-      console.log(req.params.searchText);
      res.status(200).json({ msg:'Success', records: await Station.search(req.params.searchText) });
     }
   } catch (err) {
@@ -21,11 +20,12 @@ router.get('/find/:searchText', async (req, res) => {
 
 router.post('/delete', async(req, res) => {
   try {
-    let user = req.user;
-    let station = user.stations.find(d => d._id == req.body.stationID);
+    let user = await req.user.populate('stations');
+    let station = user.stations.find(d => d._id == req.body._id);
     user.stations.pull(station);
     await user.save();
-    res.status(200).json({ msg:'Success', nextrains: user.stations });
+    let nts = await nextrain(user.stations)
+    res.status(200).json({ msg:'Success', nextrains: nts });
   } catch (err) {
     console.log(err);
     res.status(400).json({ msg:'Invalid Request' });

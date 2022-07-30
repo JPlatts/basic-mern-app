@@ -6,7 +6,7 @@ import { getNextrains,addStation, reset } from './nextrainSlice'
 import { toast } from 'react-toastify';
 import Spinner from '../../app/Spinner';
 import NextrainForm from './NextrainForm';
-
+import Nextrain from './Nextrain';
 
 
 function Nextrains() {
@@ -42,7 +42,7 @@ function Nextrains() {
         <h1><FaTrain /> NexTrain</h1>
         <p className="subtitle">Oi vey, protobuffers.</p>
         <hr />
-        {nextrains && <p>{JSON.stringify(nextrains)}</p>}
+        {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n}/>))}
       </div>
       <NextrainForm stationChosen={stationChosen} />
     </div>
