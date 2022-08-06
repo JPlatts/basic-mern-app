@@ -1,5 +1,6 @@
 FROM node:18-alpine3.15
-
+RUN apk add --no-cache tzdata
+ENV TZ=America/New_York
 RUN mkdir -p /home/app
 
 COPY . /home/app
