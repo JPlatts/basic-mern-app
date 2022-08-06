@@ -54,3 +54,6 @@ Thumbs.db
 # Certificates
 *.crt
 *.key
+
+# Docker
+*.yaml

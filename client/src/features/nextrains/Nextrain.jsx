@@ -38,7 +38,7 @@ function Nextrain(props) {
                   {props.nextrain.uptownTimes.map((n) => ( <p key={`${n.stops}${n.route.route}`}><TrainImage route={n.route} /> {n.stops[0]}</p>))}
                 </div>
                 <div className="tile is-vertical is-6">
-                  {props.nextrain.uptownTimes.map((n) => ( <p key={`${n.stops}${n.route.route}`}><TrainImage route={n.route} /> {n.stops[0]}</p>))}
+                  {props.nextrain.downtownTimes.map((n) => ( <p key={`${n.stops}${n.route.route}`}><TrainImage route={n.route} /> {n.stops[0]}</p>))}
                 </div>
               </div>
             </div>

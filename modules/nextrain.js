@@ -41,7 +41,8 @@ async function nextrain(stations) {
 
     let downtownTimes = trainData.filter(e => e.tripUpdate && e.tripUpdate.stopTimeUpdate.some(s => s.stopId == tts)).map(e => {
       return {
-        route: e.tripUpdate.trip.routeId,
+        route: s.routes.find((r) => r.route == e.tripUpdate.trip.routeId),
+        //route: e.tripUpdate.trip.routeId,
         stops: e.tripUpdate.stopTimeUpdate.filter(s => s.stopId == tts).map(s => {
           let d = new Date(s.arrival.time.low * 1000);
           return d.toLocaleString('en');

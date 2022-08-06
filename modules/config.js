@@ -1,8 +1,8 @@
 module.exports = {
     environment: process.env.NODE_ENV || 'development',
     sslConfig: { useSSL:process.env.USE_SSL && process.env.USE_SSL.toLowerCase() === 'true', crtFile: 'sslcert/local.crt', keyFile: 'sslcert/local.key' },
-    mongoUri: process.env.MONGO_URI || 'mongodb://localhost/basic-mern-app',
-    PORT: process.env.PORT || 3000,
+    mongoUri: process.env.MONGO_URI || 'Your_mongo_connection',
+    PORT: process.env.PORT || 3080,
     JWT_KEY: process.env.JWT_KEY || 'Best_Be_Overridding_THIS_for__SECURITY__',
     MTA_KEY: process.env.MTA_KEY || 'ADD YOUR MTA KEY',
     smtpSettings: {

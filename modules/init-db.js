@@ -7,7 +7,7 @@ const { mongoUri } = require('./config');
 var mongoose = require('mongoose');
 
 //Set up default mongoose connection
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoUri, {dbName: 'basic-mern-app', useNewUrlParser: true, useUnifiedTopology: true });
 
 //Get the default connection
 var db = mongoose.connection;
@@ -17,11 +17,10 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 db.once('open', function(){
     console.log('Connected to "basic-mern-app" database.')
+    Station.loadFromMTAFile();
 });
 
-Station.loadFromMTAFile();
 
-//Station.tryHashTable();
 
 module.exports = db;
 
