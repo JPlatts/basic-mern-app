@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { getNextrains, addStation, reset } from './nextrainSlice'
 import { toast } from 'react-toastify';
-import Spinner from '../../app/Spinner';
+
 import NextrainForm from './NextrainForm';
 import Nextrain from './Nextrain';
 
@@ -19,7 +19,7 @@ function Nextrains() {
     if(isError) {
       toast.error(message);
     }
-    if(user) {
+    if(user && !isError) {
       dispatch(getNextrains())
     } else {
       navigate('/');
@@ -35,10 +35,6 @@ function Nextrains() {
     return () => clearInterval(intervalId);
   },[dispatch]);
   
-  if (isLoading) {
-    return (<Spinner>Loading Nextrains ...</Spinner>);
-  }
-
   const stationChosen = (value) => {
     dispatch(addStation(JSON.parse(value)));
   }
@@ -50,7 +46,7 @@ function Nextrains() {
         <h1><FaTrain /> NexTrain</h1>
         <p className="subtitle">Oi vey, protobuffers.</p>
         <hr />
-        {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n}/>))}
+        {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n} loading={isLoading}/>))}
       </div>
       <NextrainForm stationChosen={stationChosen} />
     </div>

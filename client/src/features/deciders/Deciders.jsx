@@ -21,7 +21,7 @@ function Deciders() {
     if(isError) {
       toast.error(message);
     }
-    if(user) {
+    if(user && !isError) {
       dispatch(getDeciders(user.token))
     } else {
       navigate('/');

@@ -2,6 +2,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { deleteStation } from './nextrainSlice'
 import TrainImage from './TrainImage'
+import Spinner from '../../app/Spinner';
 
 function Nextrain(props) {
   
@@ -39,6 +40,7 @@ function Nextrain(props) {
         </header>
         <div className="card-content">
           <div className="content">
+            {props.loading && <Spinner>Loading Nextrains ...</Spinner>}
             <div className="columns">
               <div className="column is-half">
                 <table className="table">
