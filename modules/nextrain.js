@@ -28,27 +28,20 @@ async function nextrain(stations) {
     let tts = `${s.gtfsCode}S`;
     
     let uptownTimes = trainData.filter(e => e.tripUpdate && e.tripUpdate.stopTimeUpdate.some(s => s.stopId ==  tt )).map(e => {
+      let stopDate = new Date(e.tripUpdate.stopTimeUpdate.filter(s => s.stopId == tt)[0].arrival.time.low * 1000);
       return {
         route: s.routes.find((r) => r.route == e.tripUpdate.trip.routeId),
-        //route: e.tripUpdate.trip.routeId,
-        stops: e.tripUpdate.stopTimeUpdate.filter(s => s.stopId == tt).map(s => {
-          let d = new Date(s.arrival.time.low * 1000);
-          return d.toLocaleString('en');
-        })
+        stopDate: stopDate
       }
-    });
-    
+    }).sort((a,b) => a.stopDate - b.stopDate).slice(0, 4);
 
     let downtownTimes = trainData.filter(e => e.tripUpdate && e.tripUpdate.stopTimeUpdate.some(s => s.stopId == tts)).map(e => {
+      let stopDate = new Date(e.tripUpdate.stopTimeUpdate.filter(s => s.stopId == tts)[0].arrival.time.low * 1000);
       return {
         route: s.routes.find((r) => r.route == e.tripUpdate.trip.routeId),
-        //route: e.tripUpdate.trip.routeId,
-        stops: e.tripUpdate.stopTimeUpdate.filter(s => s.stopId == tts).map(s => {
-          let d = new Date(s.arrival.time.low * 1000);
-          return d.toLocaleString('en');
-        })
+        stopDate: stopDate,
       }
-    });
+    }).sort((a,b) => a.stopDate - b.stopDate).slice(0, 4);
     
     stationUpdates.push({station: s, uptownTimes: uptownTimes, downtownTimes: downtownTimes});
   }); 

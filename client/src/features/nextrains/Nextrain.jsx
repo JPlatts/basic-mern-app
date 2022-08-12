@@ -7,6 +7,22 @@ function Nextrain(props) {
   
   const dispatch = useDispatch();
   
+  const fmtStopDate = (d) => {
+    let dt = new Date(d);
+    var hours = dt.getHours();
+    var minutes = dt.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    return hours + ':' + minutes + ' ' + ampm;
+  }
+
+  const getMins = (d) => {
+    let dt = new Date(d);
+    return parseInt(Math.abs(dt.getTime() - new Date().getTime()) / (1000 * 60) % 60);
+  }
+
   const deleteMe = () => {
     dispatch(deleteStation(props.nextrain.station));
   }
@@ -26,18 +42,22 @@ function Nextrain(props) {
             <div className="columns">
               <div className="column is-half">
                 <table className="table">
-                  <tr>
-                    <th colSpan="2">{props.nextrain && props.nextrain.station.northLabel}</th>
-                  </tr>
-                  {props.nextrain.uptownTimes.map((n) => ( <tr key={`${n.stops}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{n.stops[0]}</td></tr>))}
+                  <tbody>
+                    <tr>
+                      <th colSpan="3">{props.nextrain && props.nextrain.station.northLabel}</th>
+                    </tr>
+                    {props.nextrain.uptownTimes.map((n) => ( <tr key={`${n.stopDate}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
+                  </tbody>
                 </table>
               </div>
               <div className="column is-half">
                 <table className="table">
-                  <tr>
-                    <th colSpan="2">{props.nextrain && props.nextrain.station.southLabel}</th>
-                  </tr>
-                  {props.nextrain.downtownTimes.map((n) => ( <tr key={`${n.stops}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{n.stops[0]}</td></tr>))}
+                  <tbody>
+                    <tr>
+                      <th colSpan="3">{props.nextrain && props.nextrain.station.southLabel}</th>
+                    </tr>
+                    {props.nextrain.downtownTimes.map((n) => ( <tr key={`${n.stopDate}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
+                  </tbody>
                 </table>
               </div>
             </div>
