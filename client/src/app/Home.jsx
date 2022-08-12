@@ -15,34 +15,7 @@ function Home() {
       <hr />
       
       <div className="columns">
-        <div className="column">
-          <div className="card">
-            <div className="card-content">
-              <div className="media">
-                <div className="media-left">
-                  <figure className="image is-48x48">
-                    <FaDice className='icon-48' />
-                  </figure>
-                </div>
-                <div className="media-content">
-                  <p className="title is-4">Decider</p>
-                  <p className="subtitle is-6">#HelpMeChoose</p>
-                </div>
-              </div>
-              <div className="content">
-                Having trouble making up your mind?!? Add your options 
-                to a list and let the Decider pick for you. Create as 
-                many decider lists as you want. They'll be here when 
-                you come back.
-              </div>
-              <div className="content">
-                {!user && <Link className='button is-link is-outlined' to="/login"><FaChevronRight /> Login to Access</Link>}
-                {user && <Link className='button is-link is-outlined' to="/deciders"><FaChevronRight />Decider</Link>}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="column">
+      <div className="column">
           <div className="card">
             <div className="card-content">
               <div className="media">
@@ -70,6 +43,34 @@ function Home() {
             </div>
           </div>
         </div>
+        <div className="column">
+          <div className="card">
+            <div className="card-content">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-48x48">
+                    <FaDice className='icon-48' />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <p className="title is-4">Decider</p>
+                  <p className="subtitle is-6">#HelpMeChoose</p>
+                </div>
+              </div>
+              <div className="content">
+                Having trouble making up your mind?!? Add your options 
+                to a list and let the Decider pick for you. Create as 
+                many decider lists as you want. They'll be here when 
+                you come back.
+              </div>
+              <div className="content">
+                {!user && <Link className='button is-link is-outlined' to="/login"><FaChevronRight /> Login to Access</Link>}
+                {user && <Link className='button is-link is-outlined' to="/deciders"><FaChevronRight />Decider</Link>}
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div className="column">
           <div className="card">
             <div className="card-content">

@@ -22,8 +22,8 @@ function Nav() {
         </div>
         <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
           <div className="navbar-start">
-            {user && <Link className="navbar-item" to="/Deciders"><FaDice />&nbsp;Decider</Link>}
             {user && <Link className="navbar-item" to="/nextrains"><FaTrain />&nbsp;NexTrain</Link>}
+            {user && <Link className="navbar-item" to="/Deciders"><FaDice />&nbsp;Decider</Link>}
             <Link className="navbar-item" to="/About"><FaInfoCircle />&nbsp;About</Link>
           </div>
           <div className="navbar-end">
