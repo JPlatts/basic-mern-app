@@ -44,7 +44,7 @@ function NextrainForm({stationChosen}) {
   );
 
   const inputProps = {
-    placeholder: 'Find an MTA subway station',
+    placeholder: 'Find an MTA subway station to add',
     value:searchText,
     onChange: (event, {newValue}) => {
       setSearchText(newValue);
@@ -53,11 +53,9 @@ function NextrainForm({stationChosen}) {
 
   return (
     <div className="container">
-      <div className="columns">
-        <div className="column is-three-fifths is-offset-one-fifth">
-          <div className="box">
-            <div className="columns is-mobile">
-              <div className="column is-12">
+      <div className="box">
+        <div className="columns is-mobile">
+          <div className="column is-12">
                 <div className="control has-icons-left">
                   <AutoSuggest suggestions={stations} 
                     onSuggestionsFetchRequested={onSuggestionsFetchRequested}  
@@ -77,8 +75,8 @@ function NextrainForm({stationChosen}) {
               </div> */}
             </div>
           </div>
-        </div>
-      </div>
+        
+      
     </div>
   );
 }
