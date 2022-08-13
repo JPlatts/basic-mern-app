@@ -44,7 +44,7 @@ function Nextrain(props) {
                     <tr>
                       <th colSpan="3">{props.nextrain && props.nextrain.station.southLabel}</th>
                     </tr>
-                    {props.nextrain.downtownTimes.map((n) => ( <tr key={`${n.stopDate}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
+                    {props.nextrain.downtownTimes.map((n) => ( <tr key={`${n.stopDate}${n.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
                   </tbody>
                 </table>
               </div>
