@@ -29,10 +29,8 @@ async function nextrain(stations) {
     
     let uptownTimes = trainData.filter(e => e.tripUpdate && e.tripUpdate.stopTimeUpdate.some(s => s.stopId ==  tt )).map(e => {
       let stopDate = new Date(e.tripUpdate.stopTimeUpdate.filter(s => s.stopId == tt)[0].arrival.time.low * 1000);
-      return {
-        route: s.routes.find((r) => r.route == e.tripUpdate.trip.routeId),
-        stopDate: stopDate
-      }
+      let r = s.routes.find((r) => r.route == e.tripUpdate.trip.routeId);
+        return {route: r, stopDate: stopDate};
     }).sort((a,b) => a.stopDate - b.stopDate).slice(0, 4);
 
     let downtownTimes = trainData.filter(e => e.tripUpdate && e.tripUpdate.stopTimeUpdate.some(s => s.stopId == tts)).map(e => {

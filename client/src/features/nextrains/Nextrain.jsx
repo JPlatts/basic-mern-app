@@ -27,14 +27,14 @@ function Nextrain(props) {
         <div className="card-content">
           <div className="content">
             {props.loading && <Spinner>Loading Nextrains ...</Spinner>}
-            <div className="columns">
+            {!props.loading &&  <div className="columns">
               <div className="column is-half">
                 <table className="table">
                   <tbody>
                     <tr>
                       <th colSpan="3">{props.nextrain && props.nextrain.station.northLabel}</th>
                     </tr>
-                    {!props.loading && props.nextrain.uptownTimes.map((n) => ( <tr key={`${n.stopDate}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
+                    {props.nextrain.uptownTimes.map((n) => (n.route && <tr key={`${n.stopDate}${n.route.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))} 
                   </tbody>
                 </table>
               </div>
@@ -44,11 +44,11 @@ function Nextrain(props) {
                     <tr>
                       <th colSpan="3">{props.nextrain && props.nextrain.station.southLabel}</th>
                     </tr>
-                    {props.nextrain.downtownTimes.map((n) => ( <tr key={`${n.stopDate}${n.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
+                    {props.nextrain.downtownTimes.map((n) => (n.route && <tr key={`${n.stopDate}${n.route}`}><td><TrainImage route={n.route} /></td><td>{fmtStopDate(n.stopDate)}</td><td>{getMins(n.stopDate)} mins</td></tr> ))}
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

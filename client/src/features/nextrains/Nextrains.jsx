@@ -46,11 +46,9 @@ function Nextrains() {
         <h1><FaTrain /> NexTrain</h1>
         <p className="subtitle">Oi vey, protobuffers.</p>
         <hr />
-        
-        {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n} loading={isLoading}/>))}
         <NextrainForm stationChosen={stationChosen} />
+        {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n} loading={isLoading}/>))}
       </div>
-      
     </div>
   );
 
