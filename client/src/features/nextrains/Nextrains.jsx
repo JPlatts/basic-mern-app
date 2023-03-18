@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { getNextrains, addStation, reset } from './nextrainSlice'
 import { toast } from 'react-toastify';
-
-import NextrainForm from './NextrainForm';
+import StationPicker from './StationPicker';
 import Nextrain from './Nextrain';
 
 
@@ -34,9 +33,9 @@ function Nextrains() {
     },30000);
     return () => clearInterval(intervalId);
   },[dispatch]);
-  
-  const stationChosen = (value) => {
-    dispatch(addStation(JSON.parse(value)));
+
+  const chosen = (v) => {
+    dispatch(addStation(v));
   }
 
   
@@ -46,7 +45,7 @@ function Nextrains() {
         <h1><FaTrain /> NexTrain</h1>
         <p className="subtitle">Oi vey, protobuffers.</p>
         <hr />
-        <NextrainForm stationChosen={stationChosen} />
+        <StationPicker stationChosen={chosen} />
         {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n} loading={isLoading}/>))}
       </div>
     </div>

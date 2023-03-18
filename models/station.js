@@ -65,39 +65,6 @@ stationSchema.statics.search = async (term) => {
   return await Station.find({ "name": { "$regex": regex } }).limit(7);
   
 }
-
-stationSchema.statics.tryHashTable = async () => {
-  console.log('hello from tryHashTable()');
-
-  let term = '145'
-  const regex = new RegExp(term, 'i');
-
-  const stations = await Station.find({});
-  let sMap = new Map();
-  stations.forEach((s) => {
-    let key = `${s.latitude}|${s.longitude}`;
-    if(sMap.get(key)) {
-      sMap.get(key).stations.push(s);
-      sMap.get(key).count++;
-    } else {
-      sMap.set(key,{ stations: [], count: 0});
-      sMap.get(key).stations.push(s);
-      sMap.get(key).count++;
-
-    }
-  });
-
-  
-  
-  sMap.forEach((s) => {
-    if(s.count > 1) {
-      console.log(s);
-    }
-  })
-  
-  console.log('---------done---------');
-  return undefined;
-}
   
 
 const Station = mongoose.model('Station', stationSchema);

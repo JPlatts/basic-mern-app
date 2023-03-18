@@ -21,7 +21,7 @@ const addStation = async (token, station) => {
         method: 'POST',
         headers: ah,
         body: JSON.stringify({
-          ...station,
+          ...station, stationID: station._id
         }),
 
       });
