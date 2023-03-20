@@ -103,7 +103,7 @@ userSchema.statics.userExistsWithEmail = async (email) => {
 };
 
 userSchema.statics.sanitizeNewUser = (user) => {
-  user.email = user.email ? user.email.trim() : '';
+  user.email = user.email ? user.email.toLowerCase().trim() : '';
   user.firstName = user.firstName ? user.firstName.trim() : '';
   user.lastName = user.lastName ? user.lastName.trim() : '';
   user.password = user.password ? user.password.trim() : '';
@@ -178,7 +178,7 @@ userSchema.statics.confirm = async (userID, key) => {
 }
 
 userSchema.statics.authenticate = async (email, password) => {
-  let user = await User.findOne({email: email});
+  let user = await User.findOne({email: email.toLowerCase()});
   if (user && hasher.hash(user.pwdSalt, password) === user.pwdHash) {
     return await User.desensitize(user);
   } else {
