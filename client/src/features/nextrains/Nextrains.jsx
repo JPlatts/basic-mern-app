@@ -11,8 +11,8 @@ import Nextrain from './Nextrain';
 function Nextrains() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {user} = useSelector((state) => state.auth);
-  const { nextrains, isError, message, isLoading} = useSelector((state) => state.nextrains);
+  const { user } = useSelector((state) => state.auth);
+  const { nextrains, isError, message, isLoading } = useSelector((state) => state.nextrains);
     
   useEffect(()=>{
     if(isError) {
@@ -34,7 +34,9 @@ function Nextrains() {
   },[dispatch]);
 
   const chosen = (v) => {
-    dispatch(addStation(v));
+    if(!nextrains.some((n) => n.station._id === v._id)) {
+      dispatch(addStation(v));
+    }
   }
 
   

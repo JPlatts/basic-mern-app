@@ -12,9 +12,7 @@ export default function Users() {
   const navigate = useNavigate();
   const {user} = useSelector((state) => state.auth);
   const {users, isError, message, isLoading} = useSelector((state) => state.users)
-  
-
-  
+   
 
   useEffect(()=>{
     if(isError) {
