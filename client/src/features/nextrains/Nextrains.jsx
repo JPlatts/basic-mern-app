@@ -45,7 +45,6 @@ function Nextrains() {
       <div className="content">
         <h1><FaTrain /> NexTrain</h1>
         {/* <p className="subtitle">Oi vey, protobuffers.</p> */}
-        <p className="subtitle">Updated every 30 seconds</p> 
         <hr />
         <StationPicker stationChosen={chosen} />
         {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n} loading={isLoading}/>))}
