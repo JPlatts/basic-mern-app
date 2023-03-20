@@ -28,7 +28,6 @@ function Nextrains() {
 
   useEffect(() => {
     const intervalId = setInterval(() => { 
-      console.log('punching')
       dispatch(getNextrains()); 
     },30000);
     return () => clearInterval(intervalId);
@@ -43,7 +42,8 @@ function Nextrains() {
     <div className="container">
       <div className="content">
         <h1><FaTrain /> NexTrain</h1>
-        <p className="subtitle">Oi vey, protobuffers.</p>
+        {/* <p className="subtitle">Oi vey, protobuffers.</p> */}
+        <p className="subtitle">Updated every 30 seconds</p> 
         <hr />
         <StationPicker stationChosen={chosen} />
         {nextrains.map((n) => (<Nextrain key={n.station._id} nextrain={n} loading={isLoading}/>))}

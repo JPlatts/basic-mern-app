@@ -1,4 +1,4 @@
-const API_URL = '/api/users/'
+const API_URL = '/api/authentication/'
 
 const register = async (userData) => {
   let response = await fetch(`${API_URL}register`, { 

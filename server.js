@@ -20,6 +20,8 @@ app.use(express.json())
 //initialize mongo db
 const db = require('./modules/init-db');
 
+app.use('/api/authentication', require('./routes/authentication'));
+app.use('/api/users', require('./modules/auth-middleware'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/deciders', require('./modules/auth-middleware'));
 app.use('/api/deciders', require('./routes/deciders'));

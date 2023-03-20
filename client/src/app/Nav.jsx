@@ -2,7 +2,7 @@ import LoginButton from '../features/auth/LoginButton';
 import { useSelector } from 'react-redux';
 const React = require('react');
 const { Link } = require('react-router-dom');
-const { FaMeteor, FaDice, FaInfoCircle, FaTrain } = require('react-icons/fa');
+const { FaMeteor, FaDice, FaInfoCircle, FaTrain, FaUser } = require('react-icons/fa');
 
 function Nav() {
   const [isActive, setisActive] = React.useState(false);
@@ -24,6 +24,7 @@ function Nav() {
           <div className="navbar-start">
             {user && <Link className="navbar-item" to="/nextrains"><FaTrain />&nbsp;NexTrain</Link>}
             {user && <Link className="navbar-item" to="/Deciders"><FaDice />&nbsp;Decider</Link>}
+            {user && user.isAdmin && <Link className="navbar-item" to="/Users"><FaUser />&nbsp;Users</Link>}
             <Link className="navbar-item" to="/About"><FaInfoCircle />&nbsp;About</Link>
           </div>
           <div className="navbar-end">

@@ -12,6 +12,7 @@ import ResetPw from './features/auth/ResetPw';
 import Nextrains from './features/nextrains/Nextrains';
 import { ToastContainer} from 'react-toastify'
 import AccountConfirmation from './features/auth/AccountConfirmation';  
+import Users from './features/users/Users';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/deciders" element={<Deciders />} />
         <Route path="/nextrains" element={<Nextrains />} />
+        <Route path="/users" element={<Users />} />
       </Routes>
       <AccountConfirmation />
       <ToastContainer />
